@@ -4,22 +4,23 @@ A Nextflow workflow for assembling and evaluating integrant-containing yeast gen
 
 ## Overview
 
-This workflow processes ONT long-read sequencing data through a sophisticated pipeline that:
+This workflow processes ONT long-read sequencing data through a pipeline that:
 
 1. **Quality Filters Reads** - Removes low-quality reads (Q<10) using Chopper
 2. **Applies Read Length Thresholds** - Tests multiple length cutoffs to identify optimal parameters
-3. **Creates Multiple Assembly Replicates** - Generates assemblies from downsampled read sets at various coverage levels
-4. **Performs Assembly QC** - Comprehensive quality control with NanoPlot and Flye statistics
-5. **Detects Transgenes** - BLAST-based identification and copy number estimation
-6. **Evaluates Assemblies** (Optional) - Reference-based validation and visualization
+3. **Downsamples Dnput Data** - Ensure that depth of coverage is within usable range
+4. **Creates Multiple Assembly Replicates** - Generates assemblies from downsampled read sets at various coverage levels
+5. **Performs Assembly QC** - Comprehensive quality control with NanoPlot and Flye statistics
+6. **Detects Transgenes** - BLAST-based identification and copy number estimation
+7. **Evaluates Assemblies** - Reference-based validation and visualization
 
 ## Key Features
 
-### 🔬 **Flexible Read Length Testing**
+### **Flexible Read Length Testing**
 
 Configure custom read length thresholds per sample to identify optimal parameters for your dataset. Default: 40kb+ and 50kb+ cutoffs.
 
-### 📊 **Multi-Coverage Assembly Strategy**
+### **Multi-Coverage Assembly Strategy**
 
 Generate assemblies from multiple downsampled datasets to:
 
@@ -27,7 +28,7 @@ Generate assemblies from multiple downsampled datasets to:
 - Identify minimum coverage requirements
 - Evaluate assembly consistency across replicates
 
-### 🧬 **Transgene Detection & Quantification**
+### **Transgene Detection & Quantification**
 
 Automated BLAST-based transgene detection with:
 
@@ -35,7 +36,7 @@ Automated BLAST-based transgene detection with:
 - Integration site identification
 - Multi-transgene support via transgene library
 
-### 🔄 **Replicate-Based Robustness Testing**
+### **Replicate-Based Robustness Testing**
 
 Create multiple assembly replicates (default: 1 per downsample rate, configurable up to N replicates) to:
 
@@ -43,7 +44,7 @@ Create multiple assembly replicates (default: 1 per downsample rate, configurabl
 - Calculate confidence intervals
 - Identify spurious assembly artifacts
 
-### 🎯 **Assembly Evaluation Module** (Optional)
+### **Assembly Evaluation Module**
 
 Comprehensive assembly validation including:
 
