@@ -1,0 +1,32 @@
+# Nextflow work directory
+work/
+
+# Nextflow logs and reports
+.nextflow*
+*.html
+*.svg
+*.txt
+
+# Results directories (optional - you might want to track some results)
+results/
+results_*/
+
+# Conda/Mamba cache
+.conda/
+.mamba/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+*.flye.logs
+*.assembly_info.txt
