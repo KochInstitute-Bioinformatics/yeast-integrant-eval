@@ -245,21 +245,13 @@ results/
 
 The module uses the following containers (automatically pulled by Nextflow):
 
-1. **Minimap2 + Samtools + BioPython:**
-   - `quay.io/biocontainers/mulled-v2-66534bcbb7031a148b13e2ad42583020b9cd25c4:1679e915ddb9d6b4abda91880c4b48857d471bd8-0`
-   - Used for: alignment, repair, and finalization processes
+1. **General Genomics Tools (Minimap2, Samtools, BioPython, Bedtools):**
+   - `bumproo/general_genomics:latest`
+   - Used for: alignment, repair, finalization, read mapping, and transcript mapping
 
 2. **BLAST:**
    - `ncbi/blast:latest`
    - Used for: transgene detection
-
-3. **Python:**
-   - `bumproo/python:3.11`
-   - Used for: BED conversion
-
-4. **Minimap2 + Bedops:**
-   - `quay.io/biocontainers/mulled-v2-4ec040a1b354301aafa7731db41a5f6e9ca25e70:8110a70be2bfe7f75cbd12b7a4a10c5d8a6ef337-0`
-   - Used for: transcript mapping (optional)
 
 ## Python Scripts
 
@@ -277,21 +269,23 @@ Default resource allocations (can be adjusted in `nextflow.config`):
 
 | Process | CPUs | Memory | Time |
 | --------- | ------ | -------- | ------ |
-| ALIGN_ASSEMBLY_TO_GENOME | 4 | 8 GB | 2h |
-| REPAIR_ASSEMBLY | 2 | 4 GB | 1h |
-| ALIGN_ANNOTATED_ASSEMBLY | 4 | 8 GB | 2h |
-| FINALIZE_ASSEMBLY | 2 | 4 GB | 1h |
-| ALIGN_FINAL_ASSEMBLY | 4 | 8 GB | 2h |
-| MAP_READS_TO_ASSEMBLY | 8 | 16 GB | 4h |
-| BLAST_TRANSGENE_TO_ASSEMBLY | 2 | 4 GB | 1h |
+| ALIGN_ASSEMBLY_TO_GENOME | 4 | 16 GB | 2h |
+| REPAIR_ASSEMBLY | 1 | 8 GB | 1h |
+| ALIGN_ANNOTATED_ASSEMBLY | 4 | 16 GB | 2h |
+| CALCULATE_CHROMOSOME_COVERAGE | 4 | 16 GB | 2h |
+| CONSOLIDATE_COVERAGE_SUMMARY | 1 | 2 GB | 30m |
+| FINALIZE_ASSEMBLY | 1 | 8 GB | 1h |
+| ALIGN_FINAL_ASSEMBLY | 4 | 16 GB | 2h |
+| MAP_READS_TO_ASSEMBLY | 8 | 32 GB | 4h |
+| BLAST_TRANSGENE_TO_ASSEMBLY | 2 | 8 GB | 1h |
 | CONVERT_BLAST_TO_BED | 1 | 2 GB | 30m |
-| MAP_TRANSCRIPTS_TO_ASSEMBLY | 4 | 8 GB | 2h |
+| MAP_TRANSCRIPTS_TO_ASSEMBLY | 4 | 16 GB | 2h |
 
 ## Troubleshooting
 
 ### Issue: BioPython not found
 
-**Solution:** The `mulled-v2` container includes BioPython. Ensure you're using the correct container specification in `nextflow.config`.
+**Solution:** The `bumproo/general_genomics:latest` container includes BioPython. Ensure you're using the correct container specification in `nextflow.config`.
 
 ### Issue: Reference genome not found
 
@@ -299,7 +293,7 @@ Default resource allocations (can be adjusted in `nextflow.config`):
 
 ### Issue: sam2bed command not found
 
-**Solution:** Ensure the bedops container is specified for `MAP_TRANSCRIPTS_TO_ASSEMBLY` process.
+**Solution:** The `bumproo/general_genomics:latest` container includes bedops tools. Ensure the process is using the correct container.
 
 ### Issue: Assembly contigs don't align
 
