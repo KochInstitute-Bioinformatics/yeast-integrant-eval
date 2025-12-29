@@ -68,7 +68,7 @@ The module executes the following sequential phases:
 
 - **Process:** `MAP_TRANSCRIPTS_TO_ASSEMBLY`
 - **Purpose:** Map known transcripts to the final assembly
-- **Tools:** minimap2 + bedops (sam2bed)
+- **Tools:** minimap2 + custom Python script (sam_to_bed.py)
 - **Output:** BED file with transcript locations
 
 ## Usage
@@ -245,7 +245,7 @@ results/
 
 The module uses the following containers (automatically pulled by Nextflow):
 
-1. **General Genomics Tools (Minimap2, Samtools, BioPython, Bedtools):**
+1. **General Genomics Tools (Minimap2, Samtools, BioPython):**
    - `bumproo/general_genomics:latest`
    - Used for: alignment, repair, finalization, read mapping, and transcript mapping
 
@@ -255,11 +255,12 @@ The module uses the following containers (automatically pulled by Nextflow):
 
 ## Python Scripts
 
-The module relies on three Python scripts in the `bin/` directory:
+The module relies on four Python scripts in the `bin/` directory:
 
 1. **`repair_assembly.py`** - Repairs contig orientation based on reference alignment
 2. **`final_assembly.py`** - Concatenates contigs into final chromosomal sequences
 3. **`blast_to_bed.py`** - Converts BLAST output to BED format
+4. **`sam_to_bed.py`** - Converts SAM alignment output to BED format
 
 These scripts are automatically available in the PATH when processes execute.
 
@@ -290,10 +291,6 @@ Default resource allocations (can be adjusted in `nextflow.config`):
 ### Issue: Reference genome not found
 
 **Solution:** Verify `params.reference_genome` points to a valid file path. Use absolute paths or paths relative to the workflow launch directory.
-
-### Issue: sam2bed command not found
-
-**Solution:** The `bumproo/general_genomics:latest` container includes bedops tools. Ensure the process is using the correct container.
 
 ### Issue: Assembly contigs don't align
 

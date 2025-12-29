@@ -136,13 +136,13 @@ sample_002;/path/to/sample_002.fastq.gz;transgene_name;[{"min":30000,"name":"30k
 
 ### Column Descriptions
 
-| Column | Required | Description | Example |
-| -------- | ---------- | ------------- | --------- |
-| `name` | ✅ Yes | Unique sample identifier | `sample_001` |
-| `fastq` | ✅ Yes | Full path to FASTQ file (`.fastq`, `.fq`, `.fastq.gz`, or `.fq.gz`) | `/data/sample_001.fastq.gz` |
-| `transgene` | ✅ Yes | Transgene name (must exist in `transgenes/transgene_library.csv`) | `A-vector_herceptin_pEY345` |
-| `size_ranges` | ⚙️ Optional | JSON array of read length thresholds to test | `[{"min":40000,"name":"40k_Plus"}]` |
-| `downsample_rates` | ⚙️ Optional | JSON array of downsample fractions | `[0.25,0.5,0.75]` |
+| Column | Description | Example |
+| -------- | ------------- | --------- |
+| `name` | Unique sample identifier | `sample_001` |
+| `fastq` | Full path to FASTQ file (`.fastq`, `.fq`, `.fastq.gz`, or `.fq.gz`) | `/data/sample_001.fastq.gz` |
+| `transgene` | Transgene name (must exist in `transgenes/transgene_library.csv`) | `A-vector_herceptin_pEY345` |
+| `size_ranges` | JSON array of read length thresholds to test | `[{"min":40000,"name":"40k_Plus"}]` |
+| `downsample_rates` | JSON array of downsample fractions | `[0.25,0.5,0.75]` |
 
 ### Configuring Read Length Thresholds
 

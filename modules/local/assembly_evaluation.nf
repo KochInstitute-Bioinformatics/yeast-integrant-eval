@@ -375,7 +375,7 @@ process MAP_TRANSCRIPTS_TO_ASSEMBLY {
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         minimap2: \$(minimap2 --version 2>&1)
-        bedops: \$(sam2bed --version 2>&1 || echo "2.4.35")
+        python: \$(python --version 2>&1 | sed 's/Python //')
     END_VERSIONS
     """
 }
